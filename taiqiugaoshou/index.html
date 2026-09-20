@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="台球高手是一个专注于台球运动资讯、技巧教学、器材评测及球房预约的综合性服务平台。提供斯诺克、中式八球、美式九球等项目的最新比赛动态与专业解析。">
+    <meta name="keywords" content="台球高手,台球技巧,斯诺克教学,中式八球,台球器材,球房预约">
+    <title>台球高手-专业台球资讯、技巧教学与器材评测平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --accent-hover: #219150;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-unit);
+            padding-bottom: var(--spacing-unit);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section-more {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .section-more:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 450px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/seed/poolhero/1600/900.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .stat-item h3 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            height: 180px;
+            width: 100%;
+            background-color: #eee;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 12px;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .author-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        /* Video Card Special */
+        .video-card {
+            grid-column: span 2;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .video-placeholder:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .play-icon {
+            font-size: 48px;
+            opacity: 0.8;
+        }
+
+        /* Category Grid */
+        .category-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            border-color: var(--accent-color);
+            background-color: #f9fffb;
+        }
+
+        .cat-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 16px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .cat-title {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Equipment List */
+        .equip-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .equip-item {
+            display: flex;
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .equip-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            object-fit: cover;
+            margin-right: 16px;
+        }
+
+        .equip-info {
+            flex: 1;
+        }
+
+        .equip-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .equip-price {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .equip-review {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 16px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background-color: #fafafa;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px 20px;
+            max-height: 200px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #ecf0f1;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .grid-3, .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .video-card {
+                grid-column: span 2;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 350px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .grid-3, .grid-4, .video-card {
+                grid-template-columns: 1fr;
+            }
+            .header-inner {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 10px 0;
+            }
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 10px;
+            }
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .equip-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            .equip-img {
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-color);">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+                    <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
+                    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
+                    <line x1="14.83" y1="9.17" x2="18.36" y2="5.64"></line>
+                    <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
+                </svg>
+                台球高手
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">技巧教学</a></li>
+                    <li><a href="#">器材评测</a></li>
+                    <li><a href="#">赛事资讯</a></li>
+                    <li><a href="#">球房地图</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline">登录</button>
+                <button class="btn btn-primary">注册</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>提升你的球技，成为台球高手</h1>
+                    <p>汇聚全网最专业的台球教学视频、器材选购指南以及最新的中式八球与斯诺克赛事资讯。无论你是初学者还是进阶玩家，这里都有你需要的知识。</p>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-primary" style="padding: 12px 30px; font-size: 1rem;">开始学习</button>
+                        <button class="btn btn-outline" style="padding: 12px 30px; font-size: 1rem; border-color: rgba(255,255,255,0.8); color: white;">观看赛事</button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>500+</h3>
+                            <p>教学视频</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>200+</h3>
+                            <p>评测文章</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>1000+</h3>
+                            <p>合作球房</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Categories -->
+        <section class="container" style="margin-bottom: 40px;">
+            <div class="grid-4">
+                <div class="category-card">
+                    <div class="cat-icon">🎱</div>
+                    <div class="cat-title">中式八球</div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">🎯</div>
+                    <div class="cat-title">斯诺克</div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">🛠️</div>
+                    <div class="cat-title">球杆选购</div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">🧠</div>
+                    <div class="cat-title">战术心理</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Video & Articles -->
+        <section class="container" style="margin-bottom: 60px;">
+            <div class="section-header">
+                <h2 class="section-title">热门精选</h2>
+                <a href="#" class="section-more">查看更多 &rarr;</a>
+            </div>
+            <div class="grid-3">
+                <!-- Main Featured Video -->
+                <article class="card video-card">
+                    <div class="video-wrapper">
+                        <div class="video-placeholder" onclick="alert('视频播放器占位符 - 模拟播放')">
+                            <div class="play-icon">▶</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag">独家教学</span>
+                        <h3 class="card-title">职业选手视角：如何精准控制母球走位</h3>
+                        <p class="card-excerpt">本期视频我们将深入解析职业选手在长台进攻时的发力技巧与走位逻辑，帮助你在比赛中打出更完美的清台。</p>
+                        <div class="card-footer">
+                            <span>讲师：张伟 (职业教练)</span>
+                            <span>12,450 次观看</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sub Articles -->
+                <article class="card">
+                    <img src="https://picsum.photos/seed/pool1/400/250" alt="台球技巧" class="card-img">
+                    <div class="card-body">
+                        <span class="card-tag">技巧</span>
+                        <h3 class="card-title">新手必看：台球握杆与架手的正确姿势</h3>
+                        <p class="card-excerpt">很多初学者打不好球是因为基础动作不标准，掌握正确的握杆和架手是提高准度的第一步。</p>
+                        <div class="card-footer">
+                            <div class="author-info">
+                                <img src="https://picsum.photos/seed/u1/40/40" class="author-avatar" alt="Author">
+                                <span>李教练</span>
+                            </div>
+                            <span>2天前</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="https://picsum.photos/seed/pool2/400/250" alt="器材评测" class="card-img">
+                    <div class="card-body">
+                        <span class="card-tag">评测</span>
+                        <h3 class="card-title">2023年最受欢迎的六款球杆横评</h3>
+                        <p class="card-excerpt">我们邀请了五位资深玩家，对市面上销量最高的六款球杆进行了为期一个月的深度对比测试。</p>
+                        <div class="card-footer">
+                            <div class="author-info">
+                                <img src="https://picsum.photos/seed/u2/40/40" class="author-avatar" alt="Author">
+                                <span>器材组</span>
+                            </div>
+                            <span>5天前</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Equipment Recommendations -->
+        <section class="container" style="margin-bottom: 60px;">
+            <div class="section-header">
+                <h2 class="section-title">器材推荐</h2>
+                <a href="#" class="section-more">选购中心 &rarr;</a>
+            </div>
+            <div class="equip-list">
+                <div class="equip-item">
+                    <img src="https://picsum.photos/seed/cue1/100/100" alt="球杆" class="equip-img">
+                    <div class="equip-info">
+                        <div class="equip-name">欧米茄 Pro Series - 桃木芯碳纤维球杆</div>
+                        <div class="equip-review">
+                            <span>★★★★★</span>
+                            <span style="margin-left: 8px;">用户评分 4.9/5.0 (328条评价)</span>
+                        </div>
+                    </div>
+                    <div class="equip-price">¥ 1,299</div>
+                    <button class="btn btn-outline">购买</button>
+                </div>
+                <div class="equip-item">
+                    <img src="https://picsum.photos/seed/cue2/100/100" alt="球杆" class="equip-img">
+                    <div class="equip-info">
+                        <div class="equip-name">经典手工黑檀木斯诺克球杆</div>
+                        <div class="equip-review">
+                            <span>★★★★☆</span>
+                            <span style="margin-left: 8px;">用户评分 4.7/5.0 (156条评价)</span>
+                        </div>
+                    </div>
+                    <div class="equip-price">¥ 3,599</div>
+                    <button class="btn btn-outline">购买</button>
+                </div>
+                <div class="equip-item">
+                    <img src="https://picsum.photos/seed/cue3/100/100" alt="球杆" class="equip-img">
+                    <div class="equip-info">
+                        <div class="equip-name">多功能台球桌配件套装</div>
+                        <div class="equip-review">
+                            <span>★★★★★</span>
+                            <span style="margin-left: 8px;">用户评分 4.8/5.0 (892条评价)</span>
+                        </div>
+                    </div>
+                    <div class="equip-price">¥ 299</div>
+                    <button class="btn btn-outline">购买</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest News & FAQ -->
+        <section class="container" style="margin-bottom: 60px;">
+            <div class="grid-3">
+                <!-- News Column -->
+                <div>
+                    <div class="section-header" style="margin-bottom: 20px; border: none; padding: 0;">
+                        <h2 class="section-title" style="font-size: 1.2rem;">最新资讯</h2>
+                    </div>
+                    <div class="card" style="margin-bottom: 16px;">
+                        <div class="card-body">
+                            <span class="card-tag">赛事</span>
+                            <h3 class="card-title">中式台球世锦赛半决赛赛程公布</h3>
+                            <p class="card-excerpt">年度最大赛事即将开打，参赛选手名单及直播时间表已更新...</p>
+                            <div class="card-footer">
+                                <span>2023-10-24</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="margin-bottom: 16px;">
+                        <div class="card-body">
+                            <span class="card-tag">规则</span>
+                            <h3 class="card-title">中式八球与美式九球规则差异详解</h3>
+                            <p class="card-excerpt">很多爱好者容易混淆这两种规则，本文为您详细梳理核心区别...</p>
+                            <div class="card-footer">
+                                <span>2023-10-22</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <span class="card-tag">访谈</span>
+                            <h3 class="card-title">专访世界冠军：谈台球生涯的转折点</h3>
+                            <p class="card-excerpt">从默默无闻到站上巅峰，冠军分享了他不为人知的训练经历...</p>
+                            <div class="card-footer">
+                                <span>2023-10-20</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Column -->
+                <div>
+                    <div class="section-header" style="margin-bottom: 20px; border: none; padding: 0;">
+                        <h2 class="section-title" style="font-size: 1.2rem;">常见问题</h2>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">如何选择适合自己的球杆长度？</div>
+                        <div class="faq-answer">
+                            球杆长度通常在147cm到160cm之间。对于初学者，建议选择标准长度（约152cm），这样更容易控制平衡。身材较高大的球员可选择稍长的球杆以保持站姿舒适。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">打台球时需要穿什么鞋子？</div>
+                        <div class="faq-answer">
+                            专业的台球鞋通常底部的防滑纹路较浅，且鞋底材质较硬，能提供良好的抓地力和稳定性，避免在大力出杆时滑步。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">新球杆如何保养？</div>
+                        <div class="faq-answer">
+                            新球杆在使用前应进行调直。平时应避免暴晒、受潮和剧烈撞击。每次打完球后，建议用干软布擦拭杆头和杆身，并涂上专用的保养油。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">台球桌的台呢多久清洗一次？</div>
+                        <div class="faq-answer">
+                            一般建议每3-6个月清洗一次台呢。如果场地灰尘较大，需要更频繁的清理，以保持台呢的弹性。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map/Location Column -->
+                <div>
+                    <div class="section-header" style="margin-bottom: 20px; border: none; padding: 0;">
+                        <h2 class="section-title" style="font-size: 1.2rem;">附近球房</h2>
+                    </div>
+                    <div style="background: #eee; height: 300px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">
+                        <div style="text-align: center;">
+                            <span style="font-size: 3rem;">📍</span>
+                            <p>地图加载中...</p>
+                            <p style="font-size: 0.8rem; margin-top: 8px;">基于您的位置搜索</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                            <div style="width: 60px; height: 60px; background: #ddd; border-radius: 4px; overflow: hidden;">
+                                <img src="https://picsum.photos/seed/room1/100/100" alt="球房" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div>
+                                <h4 style="font-size: 0.95rem;">星河台球俱乐部</h4>
+                                <p style="font-size: 0.8rem; color: #666;">距离 1.2km · 12张球桌</p>
+                                <button class="btn btn-primary" style="margin-top: 8px; padding: 4px 12px; font-size: 0.8rem;">导航</button>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                            <div style="width: 60px; height: 60px; background: #ddd; border-radius: 4px; overflow: hidden;">
+                                <img src="https://picsum.photos/seed/room2/100/100" alt="球房" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div>
+                                <h4 style="font-size: 0.95rem;">皇家台球会所</h4>
+                                <p style="font-size: 0.8rem; color: #666;">距离 2.5km · 8张球桌</p>
+                                <button class="btn btn-primary" style="margin-top: 8px; padding: 4px 12px; font-size: 0.8rem;">导航</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-color);">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+                        </svg>
+                        台球高手
+                    </div>
+                    <p>致力于打造最专业的台球运动社区，连接每一位热爱台球的朋友，提供从入门到精通的全方位服务。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">网站简介</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">广告合作</a></li>
+                        <li><a href="#">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>内容栏目</h4>
+                    <ul>
+                        <li><a href="#">技巧教学</a></li>
+                        <li><a href="#">赛事直播</a></li>
+                        <li><a href="#">器材评测</a></li>
+                        <li><a href="#">球房预约</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">常见问题</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 台球高手 版权所有. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
