@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嘿嘿连载app漫画-正版热门韩漫与日漫在线阅读平台</title>
+    <meta name="description" content="嘿嘿连载app漫画提供海量正版韩漫、日漫、国漫资源，涵盖恋爱、玄幻、悬疑等热门题材。高清无删减阅读体验，支持离线下载，更新及时，是漫画爱好者的首选阅读平台。">
+    <meta name="keywords" content="嘿嘿连载app漫画,在线漫画,韩漫推荐,日漫大全,免费漫画阅读">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --secondary-color: #2f3542;
+            --accent-color: #ffa502;
+            --bg-color: #f1f2f6;
+            --card-bg: #ffffff;
+            --text-main: #2f3542;
+            --text-sub: #747d8c;
+            --spacing-unit: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--secondary-color);
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 0;
+            text-align: center;
+        }
+
+        .nav-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+            padding: 8px 0;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-main);
+        }
+
+        .download-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.1s;
+        }
+
+        .download-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff6b81 0%, #ff4757 100%);
+            color: white;
+            padding: 60px 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .section-link {
+            font-size: 14px;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .section-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Grid Layouts */
+        .manga-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .manga-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .manga-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .card-cover {
+            width: 100%;
+            aspect-ratio: 2/3;
+            background-color: #ddd;
+            position: relative;
+        }
+
+        .card-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .card-info {
+            padding: 10px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 11px;
+            color: var(--text-sub);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .update-badge {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Banner Area */
+        .banner-area {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .banner-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            min-height: 180px;
+        }
+
+        .banner-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+        }
+
+        .banner-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .banner-desc {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Genre List */
+        .genre-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .genre-item {
+            background: var(--card-bg);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--text-main);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .genre-item:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: var(--text-sub);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            padding: 40px 24px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 16px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .faq-answer {
+            color: var(--text-sub);
+            font-size: 14px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: #a4b0be;
+            padding: 40px 16px;
+        }
+
+        .footer-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: var(--container-width);
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 12px;
+            }
+            
+            nav ul {
+                display: none; /* Simplified for mobile */
+            }
+
+            .banner-area {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        全网正版 · 更新极速 · 体验无损阅读
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                嘿嘿连载<span>漫画</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">热门榜单</a></li>
+                    <li><a href="#">韩漫专区</a></li>
+                    <li><a href="#">日漫专区</a></li>
+                    <li><a href="#">排行榜</a></li>
+                    <li><a href="#">分类浏览</a></li>
+                </ul>
+            </nav>
+            <button class="download-btn" onclick="alert('请前往各大应用商店搜索“嘿嘿连载”下载')">下载 APP</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>海量漫画，一键畅读</h1>
+            <p>嘿嘿连载app漫画汇聚全球优质漫画资源，高清画质，支持离线缓存，随时随地享受阅读乐趣。</p>
+            <div class="hero-tags">
+                <span class="hero-tag">🔥 热门韩漫</span>
+                <span class="hero-tag">✨ 最新更新</span>
+                <span class="hero-tag">💎 独家连载</span>
+                <span class="hero-tag">🚀 0广告体验</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Features -->
+        <section class="features">
+            <div class="feature-item">
+                <div class="feature-icon">📺</div>
+                <h3 class="feature-title">高清画质</h3>
+                <p class="feature-desc">支持多种清晰度切换，适配手机屏幕，阅读体验丝般顺滑。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">极速更新</h3>
+                <p class="feature-desc">漫画更新第一时间推送，热门作品同步连载，绝不错过精彩剧情。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💾</div>
+                <h3 class="feature-title">离线阅读</h3>
+                <p class="feature-desc">支持缓存功能，没有网络也能看，长途旅行必备神器。</p>
+            </div>
+        </section>
+
+        <!-- Banner -->
+        <section class="banner-area">
+            <div class="banner-card">
+                <img src="https://picsum.photos/seed/manga1/800/400" alt="独家推荐">
+                <div class="banner-content">
+                    <h2 class="banner-title">《绝世神医：废柴大小姐》</h2>
+                    <p class="banner-desc">玄幻穿越题材巅峰之作，点击立即阅读</p>
+                </div>
+            </div>
+            <div class="banner-card">
+                <img src="https://picsum.photos/seed/manga2/400/400" alt="本周推荐">
+                <div class="banner-content">
+                    <h2 class="banner-title">本周精选</h2>
+                    <p class="banner-desc">精选优质作品，不容错过</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Genre Tags -->
+        <section>
+            <div class="genre-list">
+                <a href="#" class="genre-item">恋爱</a>
+                <a href="#" class="genre-item">校园</a>
+                <a href="#" class="genre-item">玄幻</a>
+                <a href="#" class="genre-item">奇幻</a>
+                <a href="#" class="genre-item">悬疑</a>
+                <a href="#" class="genre-item">恐怖</a>
+                <a href="#" class="genre-item">历史</a>
+                <a href="#" class="genre-item">军事</a>
+                <a href="#" class="genre-item">竞技</a>
+                <a href="#" class="genre-item">同人</a>
+            </div>
+        </section>
+
+        <!-- Hot Section -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">🔥 本周热门</h2>
+                <a href="#" class="section-link">查看更多 <span>&rarr;</span></a>
+            </div>
+            <div class="manga-grid">
+                <!-- Card 1 -->
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/hot1/300/450" alt="漫画封面">
+                        <span class="card-tag">独家</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">豪门重生之女王归来</h3>
+                        <div class="card-meta">
+                            <span>人气: 9.8</span>
+                            <span class="update-badge">刚刚更新</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/hot2/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">夜王传说：暗影刺客</h3>
+                        <div class="card-meta">
+                            <span>人气: 9.5</span>
+                            <span class="update-badge">2小时前</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/hot3/300/450" alt="漫画封面">
+                        <span class="card-tag">完结</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">恶魔校草：别来无恙</h3>
+                        <div class="card-meta">
+                            <span>人气: 9.2</span>
+                            <span class="update-badge">昨天</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/hot4/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">星际穿越：时空之钥</h3>
+                        <div class="card-meta">
+                            <span>人气: 8.9</span>
+                            <span class="update-badge">3天前</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/hot5/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">末日幸存者：最后的防线</h3>
+                        <div class="card-meta">
+                            <span>人气: 8.7</span>
+                            <span class="update-badge">5天前</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/hot6/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">都市修仙：从签到开始</h3>
+                        <div class="card-meta">
+                            <span>人气: 8.5</span>
+                            <span class="update-badge">1周前</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Updates Section -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">✨ 最新更新</h2>
+                <a href="#" class="section-link">查看更多 <span>&rarr;</span></a>
+            </div>
+            <div class="manga-grid">
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/new1/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">魔法学院：禁书目录</h3>
+                        <div class="card-meta">
+                            <span>更新至 102话</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/new2/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">霸道总裁的替身前妻</h3>
+                        <div class="card-meta">
+                            <span>更新至 356话</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/new3/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">诡秘：我成为了克苏鲁</h3>
+                        <div class="card-meta">
+                            <span>更新至 45话</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/new4/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">电竞之神：从青铜开始</h3>
+                        <div class="card-meta">
+                            <span>更新至 28话</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/new5/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">猎魔人：猎魔之路</h3>
+                        <div class="card-meta">
+                            <span>更新至 89话</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="manga-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/new6/300/450" alt="漫画封面">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">重生之都市仙尊</h3>
+                        <div class="card-meta">
+                            <span>更新至 520话</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="section-header" style="border-left-color: var(--text-main);">
+                <h2 class="section-title">常见问题</h2>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">嘿嘿连载漫画免费吗？ <span>+</span></div>
+                <div class="faq-answer">部分漫画免费阅读，部分独家连载作品可能需要观看广告或开通会员。我们提供多种阅读套餐供您选择。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">如何下载APP？ <span>+</span></div>
+                <div class="faq-answer">您可以在各大应用商店（如苹果App Store、华为应用市场、小米应用商店等）搜索“嘿嘿连载”进行下载安装。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">漫画更新频率是怎样的？ <span>+</span></div>
+                <div class="faq-answer">我们与作者保持紧密合作，热门作品通常每天或隔天更新一话，具体更新时间请以作品详情页为准。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">支持哪些设备？ <span>+</span></div>
+                <div class="faq-answer">支持iOS、Android以及部分平板电脑设备，网页端也支持电脑浏览器访问。</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">关于嘿嘿连载</a></li>
+                    <li><a href="#">加入我们</a></li>
+                    <li><a href="#">联系方式</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>帮助中心</h4>
+                <ul>
+                    <li><a href="#">用户协议</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">版权声明</a></li>
+                    <li><a href="#">侵权投诉</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>友情链接</h4>
+                <ul>
+                    <li><a href="#">漫画之家</a></li>
+                    <li><a href="#">动漫之家</a></li>
+                    <li><a href="#">腾讯动漫</a></li>
+                    <li><a href="#">哔哩哔哩漫画</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>关注我们</h4>
+                <p style="font-size: 13px; line-height: 1.8;">
+                    扫码下载APP<br>
+                    随时随地看漫画
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 嘿嘿连载app漫画 版权所有</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple FAQ Toggle Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close others
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
