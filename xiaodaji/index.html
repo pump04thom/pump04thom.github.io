@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="小妲己官方社区与资讯中心，提供最新小妲己角色攻略、同人作品、周边资讯及粉丝互动交流平台。">
+    <meta name="keywords" content="小妲己,妲己,王者荣耀,游戏资讯,同人创作,角色攻略">
+    <title>小妲己-官方社区与粉丝互动中心</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff9a9e;
+            --secondary-color: #fecfef;
+            --accent-color: #ff6b6b;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --bg-light: #fdfbf7;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(255, 107, 107, 0.15);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-color);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 80px 0;
+            background: radial-gradient(circle at top right, #fff0f3 0%, var(--bg-light) 60%);
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+        }
+
+        /* Character Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-tag {
+            font-size: 12px;
+            color: var(--accent-color);
+            background: #fff0f3;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 200px);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(2) { grid-column: span 1; }
+        .gallery-item:nth-child(3) { grid-column: span 1; }
+
+        /* Stats */
+        .stats {
+            background: var(--white);
+            padding: 40px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 36px;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-brand p {
+            color: #999;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #999;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin: 0 auto 30px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+            
+            .gallery-item:nth-child(1) { grid-column: span 2; }
+            .gallery-item:nth-child(2), .gallery-item:nth-child(3) { grid-column: span 1; height: 150px; }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">
+                <span>小妲己</span> Official
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#gallery">作品展示</a></li>
+                    <li><a href="#guide">角色攻略</a></li>
+                    <li><a href="#community">同人社区</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline">登录</button>
+                <button class="btn btn-primary">加入社区</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>遇见<span>小妲己</span>，开启奇妙旅程</h1>
+                    <p>这里汇集了最全的小妲己角色资讯、精美同人图集、实战操作技巧以及玩家交流社区。无论你是新手还是资深玩家，都能在这里找到属于你的乐趣。</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; @media(min-width: 769px){justify-content: flex-start;}">
+                        <a href="#guide" class="btn btn-primary">查看攻略</a>
+                        <a href="#gallery" class="btn btn-outline">浏览图集</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <!-- Using a seed to ensure consistent but distinct placeholder image -->
+                    <img src="https://picsum.photos/seed/maid/500/500" alt="小妲己角色形象展示" width="500" height="500">
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <div class="stats">
+            <div class="container stats-container">
+                <div class="stat-item">
+                    <h3>10W+</h3>
+                    <p>活跃粉丝</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5000+</h3>
+                    <p>同人作品</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>原创内容</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <section id="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <h2>精选作品展示</h2>
+                    <p>汇聚全网优质创作者，记录每一个精彩瞬间</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/art1/600/600" alt="精美插画">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/art2/300/300" alt="角色截图">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/art3/300/300" alt="场景设计">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/art4/300/300" alt="同人图">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/art5/300/300" alt="Q版形象">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Section -->
+        <section id="guide" style="background-color: #fff;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>新手与进阶指南</h2>
+                    <p>从零开始，掌握小妲己的精髓</p>
+                </div>
+                <div class="card-grid">
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/guide1/400/250" alt="技能解析" class="card-img">
+                        <div class="card-body">
+                            <span class="card-tag">核心机制</span>
+                            <h3 class="card-title">技能连招详解</h3>
+                            <p class="card-desc">掌握2-3-1的完美连招顺序，最大化输出伤害，是玩好小妲己的第一步。</p>
+                            <a href="#">阅读全文 &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/guide2/400/250" alt="出装推荐" class="card-img">
+                        <div class="card-body">
+                            <span class="card-tag">装备搭配</span>
+                            <h3 class="card-title">六神装出装思路</h3>
+                            <p class="card-desc">针对不同对局情况，灵活选择抵抗之靴、回响之杖等核心装备。</p>
+                            <a href="#">阅读全文 &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/guide3/400/250" alt="对线技巧" class="card-img">
+                        <div class="card-body">
+                            <span class="card-tag">实战技巧</span>
+                            <h3 class="card-title">前期对线策略</h3>
+                            <p class="card-desc">如何利用草丛埋伏，以及何时支援中路，是前期发育的关键。</p>
+                            <a href="#">阅读全文 &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community">
+            <div class="container">
+                <div class="section-header">
+                    <h2>粉丝互动社区</h2>
+                    <p>分享你的创作，发现志同道合的朋友</p>
+                </div>
+                <div class="card-grid">
+                    <div class="card" style="padding: 30px; text-align: center;">
+                        <div style="font-size: 40px; margin-bottom: 15px;">🎨</div>
+                        <h3>投稿专区</h3>
+                        <p style="margin: 10px 0; color: #666;">上传你的画作、Cosplay照片或同人小说。</p>
+                        <button class="btn btn-outline" style="margin-top: 15px;">立即投稿</button>
+                    </div>
+                    <div class="card" style="padding: 30px; text-align: center;">
+                        <div style="font-size: 40px; margin-bottom: 15px;">💬</div>
+                        <h3>讨论广场</h3>
+                        <p style="margin: 10px 0; color: #666;">讨论游戏版本更新、皮肤设计及角色剧情。</p>
+                        <button class="btn btn-outline" style="margin-top: 15px;">进入讨论</button>
+                    </div>
+                    <div class="card" style="padding: 30px; text-align: center;">
+                        <div style="font-size: 40px; margin-bottom: 15px;">🎁</div>
+                        <h3>周边商城</h3>
+                        <p style="margin: 10px 0; color: #666;">官方正版小妲己手办、抱枕及限定周边。</p>
+                        <button class="btn btn-outline" style="margin-top: 15px;">浏览商品</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>小妲己 Official</h3>
+                    <p>致力于为玩家提供最优质的角色资讯与互动体验，记录每一次精彩瞬间。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">加入团队</a></li>
+                        <li><a href="#">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>资源导航</h4>
+                    <ul>
+                        <li><a href="#">攻略大全</a></li>
+                        <li><a href="#">同人图库</a></li>
+                        <li><a href="#">皮肤展示</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">Discord社区</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 小妲己官方社区. All rights reserved. 本站内容仅供展示与交流，非官方网站。
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
