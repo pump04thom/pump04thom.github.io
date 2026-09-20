@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="尤的拼音查询网站，提供尤（yóu）的拼音、部首、笔画、释义及常用词语造句，帮助用户快速掌握汉字尤的读音与用法。">
+    <meta name="keywords" content="尤的拼音,尤,汉字尤,尤的意思,尤怎么读">
+    <title>尤的拼音-汉字尤的读音、释义与用法查询</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --accent-color: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .pinyin-display {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--card-bg);
+            padding: 16px 32px;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .pinyin-main {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-right: 12px;
+        }
+
+        .pinyin-sub {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 24px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Basic Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .info-item {
+            margin-bottom: 16px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .info-value strong {
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        /* Definition Section */
+        .definition-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 60px;
+        }
+
+        .definition-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .definition-content p {
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+
+        .example-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid var(--accent-color);
+            padding: 16px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .example-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .example-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Words List */
+        .words-section {
+            margin-bottom: 60px;
+        }
+
+        .word-list {
+            list-style: none;
+        }
+
+        .word-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+
+        .word-item:last-child {
+            border-bottom: none;
+        }
+
+        .word-item:hover {
+            background-color: #f8fafc;
+        }
+
+        .word-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .word-pinyin {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        details {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 16px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 400;
+        }
+
+        details[open] summary::after {
+            content: '-';
+        }
+
+        .faq-content {
+            padding: 0 20px 20px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .header-inner {
+                height: 56px;
+            }
+
+            nav ul {
+                display: none; /* Simplified for single file demo */
+            }
+            
+            .pinyin-display {
+                flex-direction: column;
+                gap: 8px;
+                padding: 12px 24px;
+            }
+            
+            .pinyin-main {
+                font-size: 2.5rem;
+            }
+            
+            .pinyin-sub {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">尤</div>
+                汉字拼音查询
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">常用字</a></li>
+                    <li><a href="#">部首查询</a></li>
+                    <li><a href="#">笔顺动画</a></li>
+                </ul>
+            </nav>
+            <button class="search-btn" aria-label="搜索">🔍</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>尤的拼音</h1>
+            <p>快速查询汉字“尤”的读音、释义、部首及常用词语，助您准确掌握汉字用法。</p>
+            
+            <div class="pinyin-display">
+                <span class="pinyin-main">yóu</span>
+                <span class="pinyin-sub">yōu</span>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <a href="#definition" style="background-color: var(--primary-color); color: white; padding: 10px 24px; border-radius: 6px; font-weight: 500;">查看释义</a>
+                <a href="#words" style="background-color: white; color: var(--primary-color); padding: 10px 24px; border-radius: 6px; font-weight: 500; border: 1px solid var(--border-color);">相关词语</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <!-- Basic Info Section -->
+        <section id="info">
+            <h2 class="section-title">基本信息</h2>
+            <div class="info-grid">
+                <article class="info-card">
+                    <div class="info-item">
+                        <div class="info-label">拼音</div>
+                        <div class="info-value">yóu</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">同音字</div>
+                        <div class="info-value">优, 忧, 由, 油</div>
+                    </div>
+                </article>
+                <article class="info-card">
+                    <div class="info-item">
+                        <div class="info-label">部首</div>
+                        <div class="info-value">尢</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">笔画数</div>
+                        <div class="info-value">4 画</div>
+                    </div>
+                </article>
+                <article class="info-card">
+                    <div class="info-item">
+                        <div class="info-label">结构</div>
+                        <div class="info-value">独体字</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">笔顺</div>
+                        <div class="info-value">横撇/横钩, 竖弯钩</div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Definition Section -->
+        <section id="definition" class="definition-container">
+            <h2 class="section-title">汉字释义</h2>
+            <div class="definition-content">
+                <h3>尤 (yóu)</h3>
+                <p><strong>尤</strong>（拼音：yóu）是一个汉字，基本字义有：</p>
+                <ul>
+                    <li><strong>特殊、突出：</strong> 如“尤异”、“尤为”。</li>
+                    <li><strong>过错、过失：</strong> 如“无尤”（没有过错）。</li>
+                    <li><strong>尤其、格外：</strong> 如“尤甚”、“尤物”（指特别美好的女子）。</li>
+                </ul>
+                
+                <div class="example-box">
+                    <div class="example-title">词语示例</div>
+                    <div class="example-text">
+                        1. <strong>尤为：</strong> 这次考试的成绩，<em>尤为</em>小明的进步让人印象深刻。<br>
+                        2. <strong>尤人：</strong> 古代指善于讽刺或指责的人（多见于古籍）。
+                    </div>
+                </div>
+                
+                <p><strong>字形演变：</strong> “尤”字在甲骨文和金文中像一个人行走时脚部受伤或姿态不正的样子，后来引申为过失、特别等含义。其字形结构为独体字，书写时要注意撇折和竖弯钩的连贯。</p>
+            </div>
+        </section>
+
+        <!-- Related Words Section -->
+        <section id="words" class="words-section">
+            <h2 class="section-title">常用词语</h2>
+            <div class="info-card">
+                <ul class="word-list">
+                    <li class="word-item">
+                        <span class="word-name">尤为</span>
+                        <span class="word-pinyin">yóu wéi</span>
+                    </li>
+                    <li class="word-item">
+                        <span class="word-name">尤物</span>
+                        <span class="word-pinyin">yóu wù</span>
+                    </li>
+                    <li class="word-item">
+                        <span class="word-name">无尤</span>
+                        <span class="word-pinyin">wú yóu</span>
+                    </li>
+                    <li class="word-item">
+                        <span class="word-name">怨尤</span>
+                        <span class="word-pinyin">yuàn yóu</span>
+                    </li>
+                    <li class="word-item">
+                        <span class="word-name">尤异</span>
+                        <span class="word-pinyin">yóu yì</span>
+                    </li>
+                    <li class="word-item">
+                        <span class="word-name">推究其尤</span>
+                        <span class="word-pinyin">tuī jiū qí yóu</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="section-title">常见问题 (FAQ)</h2>
+            
+            <details>
+                <summary>尤的拼音只有一种读法吗？</summary>
+                <div class="faq-content">
+                    在现代标准汉语普通话中，“尤”字的标准拼音是 <strong>yóu</strong>（第二声）。虽然它在某些方言或古音中可能有不同的读音，但在通用教育和日常交流中，通常只读作 yóu。
+                </div>
+            </details>
+
+            <details>
+                <summary>尤字和“尤”字（尢）有什么区别？</summary>
+                <div class="faq-content">
+                    “尤”是标准汉字，笔画数为4画，意为过失或特别。“尢”（wāng）是一个异体字或通假字，常用于人名或古代姓氏，字形与“尤”相似但略有不同。在字典中，通常以“尤”为正体收录。
+                </div>
+            </details>
+
+            <details>
+                <summary>“尤”字可以组成哪些成语？</summary>
+                <div class="faq-content">
+                    常见成语有：<strong>无出其右</strong>（意为没有能超过他的，也指没有能与其相比的）、<strong>怨天尤人</strong>（形容遇到挫折或出了问题，一味报怨天，责怪别人）。
+                </div>
+            </details>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">字库大全</a>
+                <a href="#">使用帮助</a>
+                <a href="#">联系合作</a>
+            </div>
+            <p class="copyright">© 2023 汉字拼音查询网 - 提供最准确的汉字拼音与释义服务</p>
+        </div>
+    </footer>
+
+</body>
+</html>
